@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>플레이스 순위조회 시스템</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h1>🔍 순위 조회 시스템</h1>
+        <button id="loginBtn">로그인</button>
+        <button id="logoutBtn" style="display: none">로그아웃</button>
+      </nav>
+    </header>
+
+    <main>
+      <h2>대표 키워드 & URL 입력</h2>
+      <form id="rankForm" style="display: none">
+        <input type="text" id="keyword" placeholder="대표 키워드" required />
+        <input type="text" id="url" placeholder="플레이스 URL" required />
+        <button type="submit" id="submitBtn">순위 확인</button>
+      </form>
+      <div id="resultBox"></div>
+    </main>
+
+    <!-- 로그인 모달 -->
+    <div id="loginModal" class="modal">
+      <div class="modal-content">
+        <span id="closeLogin" class="close">&times;</span>
+        <h2>로그인</h2>
+        <form id="loginForm">
+          <input type="text" id="loginUsername" placeholder="아이디" required />
+          <input
+            type="password"
+            id="loginPassword"
+            placeholder="비밀번호"
+            required
+          />
+          <button type="submit">로그인</button>
+        </form>
+        <p>계정이 없으신가요? <span id="showSignup">회원가입</span></p>
+      </div>
+    </div>
+
+    <!-- 회원가입 모달 -->
+    <div id="signupModal" class="modal">
+      <div class="modal-content">
+        <span id="closeSignup" class="close">&times;</span>
+        <h2>회원가입</h2>
+        <form id="signupForm">
+          <input
+            type="text"
+            id="signupUsername"
+            placeholder="아이디"
+            required
+          />
+          <input
+            type="password"
+            id="signupPassword"
+            placeholder="비밀번호"
+            required
+          />
+          <button type="submit">회원가입</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
