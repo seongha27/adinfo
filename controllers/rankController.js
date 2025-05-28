@@ -6,8 +6,10 @@ const { extractPlaceId } = require("../utils/extractPlaceId");
 async function handleRankSubmit(req, res) {
   const { keyword, url } = req.body;
   const userId = req.user.userId;
-  console.log("[서버] 받은 userId:", userId);
+  console.log("[서버] 받은 데이터:", { keyword, url, userId });
   const placeId = extractPlaceId(url);
+  console.log("[서버] 추출된 placeId:", placeId);
+
   if (!keyword || !placeId || !userId)
     return res.status(400).json({ error: "유효하지 않은 입력입니다." });
 

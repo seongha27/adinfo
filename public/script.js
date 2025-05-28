@@ -85,6 +85,9 @@ document.getElementById("rankForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const keyword = document.getElementById("keyword").value.trim();
   const url = document.getElementById("url").value.trim();
+  console.log("보내는 keyword:", keyword);
+  console.log("보내는 url:", url);
+
   const token = localStorage.getItem("token");
   if (!keyword || !url || !token) {
     alert("대표키워드, URL, 로그인 정보가 모두 필요합니다.");
