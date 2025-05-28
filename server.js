@@ -7,7 +7,6 @@ const path = require("path");
 const diagnoseRoutes = require("./routes/diagnoseRoutes");
 const userRoutes = require("./routes/userRoutes");
 const rankRoutes = require("./routes/rankRoutes");
-require("dotenv").config();
 
 // 환경변수 로드
 dotenv.config();
