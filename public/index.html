@@ -4,69 +4,120 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>플레이스 순위조회 시스템</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <header>
-      <nav>
-        <h1>🔍 순위 조회 시스템</h1>
-        <button id="loginBtn">로그인</button>
-        <button id="logoutBtn" style="display: none">로그아웃</button>
-      </nav>
-    </header>
+    <div class="container">
+      <!-- 왼쪽 사이드바 -->
+      <aside class="sidebar">
+        <div class="sidebar-section my">
+          <div class="sidebar-title">MY</div>
+          <div class="sidebar-item">
+            내 추천코드 : <span id="myCode">rRGE</span>
+          </div>
+          <div class="sidebar-item">그룹 관리</div>
+          <div class="sidebar-item">문자알림 관리</div>
+          <div class="sidebar-item">삭제 키워드 관리</div>
+        </div>
+        <div class="sidebar-section menu">
+          <div class="sidebar-title">N사</div>
+          <div class="sidebar-item" id="nav-rank">플레이스 순위 체크</div>
+          <div class="sidebar-item" id="nav-blog-rank">블로그 순위 체크</div>
+          <div
+            class="sidebar-item"
+            onclick="location.href='/diagnose/diagnose.html'"
+          >
+            블로그 대량 진단
+          </div>
+        </div>
+      </aside>
 
-    <main>
-      <h2>대표 키워드 & URL 입력</h2>
-      <form id="rankForm" style="display: none">
-        <input type="text" id="keyword" placeholder="대표 키워드" required />
-        <input type="text" id="url" placeholder="플레이스 URL" required />
-        <button type="submit" id="submitBtn">순위 확인</button>
-      </form>
-      <div id="resultBox"></div>
-    </main>
-
-    <!-- 로그인 모달 -->
-    <div id="loginModal" class="modal">
-      <div class="modal-content">
-        <span id="closeLogin" class="close">&times;</span>
-        <h2>로그인</h2>
-        <form id="loginForm">
-          <input type="text" id="loginUsername" placeholder="아이디" required />
-          <input
-            type="password"
-            id="loginPassword"
-            placeholder="비밀번호"
-            required
-          />
-          <button type="submit">로그인</button>
-        </form>
-        <p>계정이 없으신가요? <span id="showSignup">회원가입</span></p>
-      </div>
+      <!-- 메인 컨텐츠 -->
+      <main class="main">
+        <section id="login-section">
+          <h2>로그인</h2>
+          <form id="loginForm">
+            <input
+              type="text"
+              id="loginUsername"
+              placeholder="아이디"
+              required
+            />
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder="비밀번호"
+              required
+            />
+            <button type="submit">로그인</button>
+          </form>
+          <p>
+            계정이 없으신가요?
+            <span id="showSignup" style="color: blue; cursor: pointer"
+              >회원가입</span
+            >
+          </p>
+        </section>
+        <section id="signup-section" style="display: none">
+          <h2>회원가입</h2>
+          <form id="signupForm">
+            <input
+              type="text"
+              id="signupUsername"
+              placeholder="아이디"
+              required
+            />
+            <input
+              type="password"
+              id="signupPassword"
+              placeholder="비밀번호"
+              required
+            />
+            <button type="submit">회원가입</button>
+          </form>
+          <p>
+            <span id="backToLogin" style="color: blue; cursor: pointer"
+              >로그인으로 돌아가기</span
+            >
+          </p>
+        </section>
+        <section id="rank-section" style="display: none">
+          <nav>
+            <h1>🔍 순위 조회 시스템</h1>
+            <button id="logoutBtn">로그아웃</button>
+          </nav>
+          <h2>대표 키워드 & URL 입력</h2>
+          <form id="rankForm">
+            <input
+              type="text"
+              id="keyword"
+              placeholder="대표 키워드"
+              required
+            />
+            <input type="text" id="url" placeholder="플레이스 URL" required />
+            <button type="submit" id="submitBtn">순위 확인</button>
+          </form>
+          <div id="resultBox"></div>
+          <section>
+            <table id="company-table" class="company-table">
+              <thead>
+                <tr>
+                  <th>업체/키워드 정보</th>
+                </tr>
+              </thead>
+              <tbody id="company-tbody">
+                <!-- JS로 추가 -->
+              </tbody>
+            </table>
+          </section>
+        </section>
+      </main>
     </div>
-
-    <!-- 회원가입 모달 -->
-    <div id="signupModal" class="modal">
-      <div class="modal-content">
-        <span id="closeSignup" class="close">&times;</span>
-        <h2>회원가입</h2>
-        <form id="signupForm">
-          <input
-            type="text"
-            id="signupUsername"
-            placeholder="아이디"
-            required
-          />
-          <input
-            type="password"
-            id="signupPassword"
-            placeholder="비밀번호"
-            required
-          />
-          <button type="submit">회원가입</button>
-        </form>
-      </div>
-    </div>
-
     <script src="script.js"></script>
   </body>
 </html>

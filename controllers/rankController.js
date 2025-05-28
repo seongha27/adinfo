@@ -2,8 +2,10 @@ const axios = require("axios");
 const pool = require("../models/db");
 const { extractPlaceId } = require("../utils/extractPlaceId");
 
+// 검색 기록 저장 (userId를 토큰에서 추출)
 async function handleRankSubmit(req, res) {
-  const { keyword, url, userId } = req.body;
+  const { keyword, url } = req.body;
+  const userId = req.user.userId;
   console.log("[서버] 받은 userId:", userId);
   const placeId = extractPlaceId(url);
   if (!keyword || !placeId || !userId)
@@ -120,4 +122,40 @@ async function handleRankSubmit(req, res) {
   }
 }
 
-module.exports = { handleRankSubmit };
+// 사용자별 검색 기록 조회
+async function getSearchHistory(req, res) {
+  const userId = req.user.userId;
+  try {
+    const [rows] = await pool.execute(
+      `SELECT id, keyword, place_id,  \`rank\`, place_name, snapshot, source, visitor_review_count, blog_review_count
+       FROM place_ranks WHERE user_id = ? ORDER BY snapshot DESC LIMIT 100`,
+      [userId]
+    );
+    res.json({ success: true, history: rows });
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+}
+// 업체 삭제 (by id, 사용자 인증 포함)
+async function deleteRank(req, res) {
+  const userId = req.user.userId;
+  const { id } = req.params;
+  if (!id) return res.status(400).json({ success: false, message: "ID 필요" });
+
+  try {
+    // user_id 체크: 본인 데이터만 삭제 가능
+    const [rows] = await pool.execute(
+      "DELETE FROM place_ranks WHERE id = ? AND user_id = ?",
+      [id, userId]
+    );
+    if (rows.affectedRows > 0) {
+      res.json({ success: true });
+    } else {
+      res.status(404).json({ success: false, message: "삭제할 데이터 없음" });
+    }
+  } catch (err) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+}
+
+module.exports = { handleRankSubmit, getSearchHistory, deleteRank };

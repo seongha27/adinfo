@@ -1,14 +1,21 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const path = require("path");
+const diagnoseRoutes = require("./routes/diagnoseRoutes");
 
 dotenv.config();
 
 const app = express();
-app.use(express.static("public"));
 app.use(express.json());
 
-// 라우터 등록
+// 모든 요청 로그 미들웨어 (최상단!)
+app.use((req, res, next) => {
+  console.log("[요청]", req.method, req.url);
+  next();
+});
+
+app.use(express.static("public"));
+app.use("/api/diagnose", diagnoseRoutes);
 app.use("/api/user", require("./routes/userRoutes"));
 app.use("/api/rank", require("./routes/rankRoutes"));
 
