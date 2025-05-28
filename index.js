@@ -1,3 +1,4 @@
+// index.js
 const axios = require("axios");
 const mysql = require("mysql2/promise");
 require("dotenv").config();
@@ -78,7 +79,7 @@ async function saveToDB(keyword, placeId, rank, name, timestamp) {
   await conn.end();
 }
 
-// 🔁 전체 실행
+// 전체 실행
 (async () => {
   for (const keyword of keywords) {
     console.log(`🔍 ${keyword} 수집 시작`);
