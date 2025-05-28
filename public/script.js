@@ -2,19 +2,32 @@
 const loginSection = document.getElementById("login-section");
 const signupSection = document.getElementById("signup-section");
 const rankSection = document.getElementById("rank-section");
+const diagnoseSection = document.getElementById("diagnose-section");
 
 // SPA 이동 함수
 function showSection(section) {
   loginSection.style.display = section === "login" ? "" : "none";
   signupSection.style.display = section === "signup" ? "" : "none";
   rankSection.style.display = section === "rank" ? "" : "none";
+  diagnoseSection.style.display = section === "diagnose" ? "" : "none";
 }
 
 document.getElementById("showSignup").onclick = () => showSection("signup");
 document.getElementById("backToLogin").onclick = () => showSection("login");
-
+document.getElementById("nav-diagnose").onclick = () => showSection("diagnose");
 // 로그인 상태 확인 및 초기화
 window.onload = () => {
+  // DOM 요소 모두 로드 후 실행
+
+  // 이벤트 바인딩 추가
+  document.getElementById("showSignup").onclick = () => showSection("signup");
+  document.getElementById("backToLogin").onclick = () => showSection("login");
+  const diagnoseBtn = document.getElementById("nav-diagnose");
+  if (diagnoseBtn) {
+    diagnoseBtn.onclick = () => showSection("diagnose");
+  }
+
+  // 로그인 상태 확인 후 화면 전환
   if (localStorage.getItem("token")) {
     showSection("rank");
     fetchHistory();

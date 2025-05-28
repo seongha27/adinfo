@@ -9,7 +9,6 @@
       href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="container">
@@ -28,12 +27,7 @@
           <div class="sidebar-title">N사</div>
           <div class="sidebar-item" id="nav-rank">플레이스 순위 체크</div>
           <div class="sidebar-item" id="nav-blog-rank">블로그 순위 체크</div>
-          <div
-            class="sidebar-item"
-            onclick="location.href='/diagnose/diagnose.html'"
-          >
-            블로그 대량 진단
-          </div>
+          <div class="sidebar-item" id="nav-diagnose">포스팅 대량 진단</div>
         </div>
       </aside>
 
@@ -63,6 +57,7 @@
             >
           </p>
         </section>
+
         <section id="signup-section" style="display: none">
           <h2>회원가입</h2>
           <form id="signupForm">
@@ -86,6 +81,7 @@
             >
           </p>
         </section>
+
         <section id="rank-section" style="display: none">
           <nav>
             <h1>🔍 순위 조회 시스템</h1>
@@ -116,8 +112,42 @@
             </table>
           </section>
         </section>
+
+        <section id="diagnose-section" style="display: none">
+          <h2>블로그 포스팅 대량 진단</h2>
+          <form id="diagnoseForm">
+            <label>네이버 블로그 포스트 URL 목록 (줄마다 하나씩 입력):</label
+            ><br />
+            <textarea
+              id="urls"
+              placeholder="https://blog.naver.com/xxx/123456789&#10;https://blog.naver.com/yyy/987654321"
+            ></textarea
+            ><br />
+            <button type="submit">진단 시작</button>
+          </form>
+          <hr />
+          <table id="resultTbl" style="display: none">
+            <thead>
+              <tr>
+                <th>아이디</th>
+                <th>닉네임</th>
+                <th>발행일</th>
+                <th>제목</th>
+                <th>지수</th>
+                <th>노출/미노출</th>
+                <th>글자수</th>
+                <th>공감</th>
+                <th>이미지수</th>
+                <th>노출이미지수</th>
+                <th>URL</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </section>
       </main>
     </div>
+
     <script src="script.js"></script>
   </body>
 </html>
