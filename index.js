@@ -1,7 +1,6 @@
 // index.js
 const axios = require("axios");
 const mysql = require("mysql2/promise");
-require("dotenv").config();
 
 const keywords = ["광명왁싱", "구월동네일", "청라왁싱"]; // 테스트용 키워드 배열
 

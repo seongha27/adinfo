@@ -30,7 +30,6 @@ app.use("/api/user", userRoutes);
 app.use("/api/rank", rankRoutes);
 
 // 🔥 크롤러(index.js) 실행
-require("./index");
 
 // 서버 실행
 const PORT = process.env.PORT || 3000;
